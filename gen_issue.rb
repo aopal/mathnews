@@ -6,7 +6,8 @@ posts.map! do |post|
   title = post.css("title").text
   body = post.children.find{|c| c.namespace&.prefix == "content"}.text
   body.gsub!(/\n{2,}/, "\n")
-  body.gsub(/>\n/, '>')
+  body.gsub!(/&nbsp;/, '')
+  body.gsub(/>\n+/, '>')
   "<article><title>#{title}</title>\n#{body}</article>"
 end
 
